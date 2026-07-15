@@ -1,15 +1,12 @@
 
 import { Navbar, Nav, Container, Button } from "react-bootstrap"
-import { Link, useNavigate, useLocation } from "react-router-dom"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 import { logout, getUser } from "../services/authService"
 import sportclubLogo from "../assets/sportclub.png"
 
 function AppNavbar({ role, bgColor }) {
     const navigate = useNavigate()
-    const location = useLocation()
     const user = getUser()
-
-    const isProfile = location.pathname === "/perfil"
 
     const handleLogout = () => {
         logout()
@@ -34,15 +31,26 @@ function AppNavbar({ role, bgColor }) {
                     <Nav className="me-auto">
                         {role === "admin" && (
                             <>
-                                <Nav.Link as={Link} to="/admin/dashboard">Gestión de Usuarios</Nav.Link>
-                                <Nav.Link as={Link} to="/admin/deportes">Gestión de Deportes</Nav.Link>
+                                <Nav.Link as={NavLink} to="/admin/dashboard">Gestión de Usuarios</Nav.Link>
+                                <Nav.Link as={NavLink} to="/admin/deportes">Gestión de Deportes</Nav.Link>
+                                <Nav.Link as={NavLink} to="/admin/salas">Gestión de Salas</Nav.Link>
+                                <Nav.Link as={NavLink} to="/admin/asignaciones">Gestión de Asignaciones</Nav.Link>
+                                <Nav.Link as={NavLink} to="/admin/horarios">Gestión de Horarios</Nav.Link>
                             </>
                         )}
-                        {isProfile && role === "coach" && (
-                            <Nav.Link as={Link} to="/coach/dashboard">Mis Clases</Nav.Link>
+                        {role === "coach" && (
+                            <>
+                                <Nav.Link as={NavLink} to="/coach/dashboard">Dashboard</Nav.Link>
+                                <Nav.Link as={NavLink} to="/coach/clases">Mis Clases</Nav.Link>
+                                <Nav.Link as={NavLink} to="/coach/horario">Mi Horario</Nav.Link>
+                            </>
                         )}
-                        {isProfile && role === "user" && (
-                            <Nav.Link as={Link} to="/user/dashboard">Mis Reservas</Nav.Link>
+                        {role === "user" && (
+                            <>
+                                <Nav.Link as={NavLink} to="/user/dashboard">Dashboard</Nav.Link>
+                                <Nav.Link as={NavLink} to="/user/clases">Clases Disponibles</Nav.Link>
+                                <Nav.Link as={NavLink} to="/user/reservas">Mis Reservas</Nav.Link>
+                            </>
                         )}
                     </Nav>
                     <Nav className="align-items-center">

@@ -54,4 +54,3 @@ Esto iniciará el servidor del backend, generalmente accesible en `http://localh
 
 # Integrante:
 Vinzenz Lafferte
-.

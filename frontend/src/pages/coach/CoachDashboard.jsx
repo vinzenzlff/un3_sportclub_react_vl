@@ -1,66 +1,44 @@
-
 import React from "react"
-import { Card, Col, Row, Table, Button } from "react-bootstrap"
+import { Card, Col, Row, Button } from "react-bootstrap"
+import { useNavigate } from "react-router-dom"
 import { getUser } from "../../services/authService"
 
 function CoachDashboard() {
+    const navigate = useNavigate()
     const user = getUser()
     const coachName = user ? user.full_name : "Coach / Entrenador"
 
     return (
-        <Row>
+        <Row className="g-4">
             <Col md={12}>
-                <Card bg="success" text="white" className="mb-4">
+                <Card bg="success" text="white" className="shadow-sm border-0">
                     <Card.Body>
-                        <Card.Title>Bienvenido, {coachName}</Card.Title>
-                        <Card.Text>Aquí puedes ver tus clases programadas, alumnos inscritos y gestionar tus horarios.</Card.Text>
+                        <Card.Title className="fw-bold">Bienvenido, {coachName}</Card.Title>
+                        <Card.Text className="mb-0">
+                            Gestiona tus clases y tu horario desde un panel más claro y enfocado en lo operativo.
+                        </Card.Text>
                     </Card.Body>
                 </Card>
             </Col>
             <Col md={12}>
-                <Card className="mb-4 shadow-sm">
-                    <Card.Header className="bg-success text-white">Mis Clases Asignadas</Card.Header>
-                    <Card.Body>
-                        <Table responsive hover striped className="align-middle">
-                            <thead>
-                                <tr>
-                                    <th>Clase</th>
-                                    <th>Horario</th>
-                                    <th>Alumnos Inscritos</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Funcional Fit</td>
-                                    <td>Lunes y Miércoles 08:00 - 09:30</td>
-                                    <td>12 Alumnos</td>
-                                    <td><span className="badge bg-success">Activo</span></td>
-                                    <td>
-                                        <Button variant="outline-success" size="sm">Ver Alumnos</Button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Spinning Pro</td>
-                                    <td>Martes y Jueves 19:00 - 20:00</td>
-                                    <td>8 Alumnos</td>
-                                    <td><span className="badge bg-success">Activo</span></td>
-                                    <td>
-                                        <Button variant="outline-success" size="sm">Ver Alumnos</Button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Power Yoga</td>
-                                    <td>Viernes 10:00 - 11:30</td>
-                                    <td>15 Alumnos</td>
-                                    <td><span className="badge bg-secondary">Pausado</span></td>
-                                    <td>
-                                        <Button variant="outline-success" size="sm">Ver Alumnos</Button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </Table>
+                <Card className="shadow-sm border-0">
+                    <Card.Body className="p-4">
+                        <div className="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3">
+                            <div>
+                                <Card.Title className="text-success mb-2">Panel de control</Card.Title>
+                                <Card.Text className="text-muted mb-0">
+                                    Accede rápidamente a tus clases asignadas y a la vista de horarios.
+                                </Card.Text>
+                            </div>
+                            <div className="d-flex flex-wrap gap-2">
+                                <Button variant="success" onClick={() => navigate("/coach/clases")}>
+                                    Ir a Mis Clases
+                                </Button>
+                                <Button variant="outline-success" onClick={() => navigate("/coach/horario")}>
+                                    Revisar Mi Horario
+                                </Button>
+                            </div>
+                        </div>
                     </Card.Body>
                 </Card>
             </Col>

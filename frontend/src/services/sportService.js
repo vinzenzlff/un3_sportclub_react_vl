@@ -1,6 +1,6 @@
 import { getToken } from "./authService"
 
-const API_URL = "http://localhost:3000/api/sport"
+const API_URL = "http://localhost:3000/api/sports"
 
 function getHeaders() {
     const token = getToken()

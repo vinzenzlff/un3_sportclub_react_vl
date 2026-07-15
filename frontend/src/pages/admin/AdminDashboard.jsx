@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
 import { Table, Button, Modal, Form, Row, Col, Card, Badge, Spinner } from "react-bootstrap"
-import { Link } from "react-router-dom"
 import Swal from "sweetalert2"
 import { getUsers, createUser, updateUser, deleteUser } from "../../services/userService"
 
@@ -265,9 +264,9 @@ function AdminDashboard() {
         <Card className="shadow-sm border-0">
             <Card.Header className="bg-danger text-white d-flex justify-content-between align-items-center py-3">
                 <h4 className="mb-0">Gestión de Usuarios</h4>
-                <div>
-                    <Button as={Link} to="/admin/deportes" variant="outline-light" className="me-2 fw-bold">
-                        Gestión de Deportes
+                <div className="d-flex gap-2">
+                    <Button variant="outline-light" className="fw-bold" onClick={fetchUsers} disabled={loading}>
+                        {loading ? "Refrescar" : "Refrescar"}
                     </Button>
                     <Button variant="light" className="text-danger fw-bold" onClick={handleOpenCreate}>
                         + Nuevo Usuario
